@@ -1,6 +1,4 @@
-provider "aws" {
-  region = "ap-south-1"
-}
+provider "aws" {}
 
 variable "cluster_name" {
   default = "free-tier-eks"
