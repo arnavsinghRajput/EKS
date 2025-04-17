@@ -9,7 +9,7 @@ variable "admin_role_arn" {
 }
 
 variable "vpc_id" {
-  default = "vpc-0fb96c7a550c3dd8d"
+  default = "vpc-0cce2d777bec6bf62"
 }
 
 variable "subnet_ids" {
