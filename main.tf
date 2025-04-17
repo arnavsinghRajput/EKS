@@ -101,16 +101,16 @@ resource "aws_eks_node_group" "node_group" {
 }
 
 # aws-auth config map to allow your IAM role
-resource "null_resource" "update_aws_auth" {
-  depends_on = [aws_eks_node_group.node_group]
-
-  provisioner "local-exec" {
-    command = <<EOT
-      aws eks update-kubeconfig --region ap-south-1 --name ${var.cluster_name}
-      kubectl apply -f aws-auth.yaml
-    EOT
-  }
-}
+#resource "null_resource" "update_aws_auth" {
+#  depends_on = [aws_eks_node_group.node_group]
+#
+#  provisioner "local-exec" {
+#    command = <<EOT
+#              aws eks update-kubeconfig --region ap-south-1 --name free-tier-eks
+#              kubectl apply -f aws-auth.yaml
+#    EOT
+#  }
+#}
 
 # Create the aws-auth.yaml file
 resource "local_file" "aws_auth" {
