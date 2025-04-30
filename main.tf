@@ -1,7 +1,7 @@
 provider "aws" {}
 
 variable "cluster_name" {
-  default = "free-tier-eks"
+  default = "pvt-eks-eks"
 }
 
 variable "admin_role_arn" {
@@ -81,7 +81,7 @@ resource "aws_eks_cluster" "eks" {
 
 resource "aws_eks_node_group" "node_group" {
   cluster_name    = aws_eks_cluster.eks.name
-  node_group_name = "free-tier-ng"
+  node_group_name = "pvt-eks-ng"
   node_role_arn   = var.admin_role_arn
   subnet_ids      = var.subnet_ids
 
@@ -91,7 +91,7 @@ resource "aws_eks_node_group" "node_group" {
     min_size     = 1
   }
 
-  instance_types = ["t3.micro"]
+  instance_types = ["t3.medium"]
   depends_on     = [
     aws_eks_cluster.eks,
     aws_iam_role_policy_attachment.worker_AmazonEKSWorkerNodePolicy,
@@ -106,7 +106,7 @@ resource "aws_eks_node_group" "node_group" {
 #
 #  provisioner "local-exec" {
 #    command = <<EOT
-#              aws eks update-kubeconfig --region ap-south-1 --name free-tier-eks
+#              aws eks update-kubeconfig --region ap-south-1 --name pvt-eks-eks
 #              kubectl apply -f aws-auth.yaml
 #    EOT
 #  }
